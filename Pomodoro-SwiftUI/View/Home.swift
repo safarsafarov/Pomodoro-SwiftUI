@@ -18,9 +18,34 @@ struct Home: View {
                 VStack(spacing: 15) {
                     // MARK: Timer Ring
                     ZStack {
+                        
+                        Circle()
+                            .fill(.white.opacity(0.03))
+                            .padding(-40)
+                        
+                        
+                        // MARK Shadow
+                        Circle()
+                            .stroke(Color("Purple"), lineWidth: 5)
+                            .blur(radius: 15)
+                            .padding(-2)
+                        
+                        Circle()
+                            .fill(Color("BG"))
+                        
                         Circle()
                             .trim(from: 0, to: 0.5)
-                            .stroke(Color("Purple").opacity(0.6), lineWidth: 15)
+                            .stroke(Color("Purple").opacity(0.7), lineWidth: 10)
+                        
+                        // MARK: Knob
+                        GeometryReader{proxy in
+                            let size = proxy.size
+                            
+                            Circle()
+                                .fill(Color("Purple"))
+                                .frame(width: 30, height: 370)
+                            
+                        }
                     }
                     .padding(60)
                     .frame(width: proxy.size.width)
@@ -30,6 +55,10 @@ struct Home: View {
             }
         }
         .padding()
+        .background{
+            Color("BG")
+                .ignoresSafeArea()
+        }
         .preferredColorScheme(.dark)
     }
 }
