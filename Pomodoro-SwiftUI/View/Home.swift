@@ -59,7 +59,7 @@ struct Home: View {
                             // MARK: Since View is Rotated, that's why using X
                                 .offset(x: size.height / 2)
                                 .rotationEffect(.init(degrees: pomodoroModel.progress * 360))
-                                .padding(.leading, -167)
+                                .padding(.leading, -142)
                             
                         }
                         
@@ -70,8 +70,16 @@ struct Home: View {
                     .padding(60)
                     .frame(width: proxy.size.width)
                     .rotationEffect(.init(degrees: -90))
+                    .animation(.easeInOut, value: pomodoroModel.progress)
+                    
+                    Button {
+                        
+                    }label: {
+                        Image(systemName: "pause")
+                            .font(.largeTitle.bold())
+                    }
                 }
-                
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 //                .onTapGesture(perform:  {
 //                    pomodoroModel.progress = 0.5
 //                })
