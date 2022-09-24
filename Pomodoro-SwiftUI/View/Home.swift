@@ -80,9 +80,9 @@ struct Home: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//                .onTapGesture(perform:  {
-//                    pomodoroModel.progress = 0.5
-//                })
+                //                .onTapGesture(perform:  {
+                //                    pomodoroModel.progress = 0.5
+                //                })
                 
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
