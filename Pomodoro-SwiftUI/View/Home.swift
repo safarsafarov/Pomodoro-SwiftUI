@@ -10,8 +10,24 @@ import SwiftUI
 struct Home: View {
     var body: some View {
         VStack {
-            Text("Pomodoro Timer")
+            .font(.title2.bold())
+            .foregroundColor(.white)
+            
+            GeometryReader(proxy in
+                           VStack {
+                
+            }
+            )
         }
+        .padding()
+        .preferredColorScheme(.dark)
     }
 }
- 
+
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(PomodoroModel())
+    }
+}
+
