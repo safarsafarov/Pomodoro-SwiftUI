@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Home: View {
+    @EnvironmentObject var pomodoroModel: PomodoroModel
     var body: some View {
         VStack {
             Text("Pomodoro Timer")
@@ -23,6 +24,10 @@ struct Home: View {
                             .fill(.white.opacity(0.03))
                             .padding(-40)
                         
+                        Circle()
+                            .trim(from: 0, to: pomodoroModel.progress)
+                            .stroke(.white.opacity(0.03), lineWidth: 80)
+                        
                         
                         // MARK Shadow
                         Circle()
@@ -34,8 +39,9 @@ struct Home: View {
                             .fill(Color("BG"))
                         
                         Circle()
-                            .trim(from: 0, to: 0.5)
+                            .trim(from: 0, to: pomodoroModel.progress)
                             .stroke(Color("Purple").opacity(0.7), lineWidth: 10)
+                            .animation(.none, value: pomodoroModel.progress)
                         
                         // MARK: Knob
                         GeometryReader{proxy in
@@ -43,14 +49,33 @@ struct Home: View {
                             
                             Circle()
                                 .fill(Color("Purple"))
-                                .frame(width: 30, height: 370)
+                                .frame(width: 30, height: 50)
+                                .overlay(content: {
+                                    Circle()
+                                        .fill(.white)
+                                        .padding(2)
+                                })
+                                .frame(width: size.width, height: size.height, alignment: .center)
+                            // MARK: Since View is Rotated, that's why using X
+                                .offset(x: size.height / 2)
+                                .rotationEffect(.init(degrees: pomodoroModel.progress * 360))
+                                .padding(.leading, -167)
                             
                         }
+                        
+                        Text(pomodoroModel.timerStringValue)
+                            .font(.system(size: 45, weight: .light))
+                            .rotationEffect(.init(degrees: -90))
                     }
                     .padding(60)
                     .frame(width: proxy.size.width)
                     .rotationEffect(.init(degrees: -90))
                 }
+                
+//                .onTapGesture(perform:  {
+//                    pomodoroModel.progress = 0.5
+//                })
+                
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
         }
