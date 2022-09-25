@@ -49,7 +49,7 @@ struct Home: View {
                             
                             Circle()
                                 .fill(Color("Purple"))
-                                .frame(width: 30, height: 50)
+                                .frame(width: 30, height: 30)
                                 .overlay(content: {
                                     Circle()
                                         .fill(.white)
